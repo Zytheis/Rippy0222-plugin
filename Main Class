@@ -24,7 +24,7 @@ public final class Main
   public void onEnable()
   {
     getServer().getPluginManager().registerEvents(this, this);
-    Bukkit.getServer().getLogger().info("SafeFall Enabled");
+    Bukkit.getServer().getLogger().info("Rippy0222 Enabled");
     try
     {
       MetricsLite metrics = new MetricsLite(this);
@@ -36,7 +36,7 @@ public final class Main
   public void onDisable()
   {
     getServer().getPluginManager().registerEvents(this, this);
-    Bukkit.getServer().getLogger().info("SafeFall Disabled");
+    Bukkit.getServer().getLogger().info("Rippy0222 Disabled");
   }
   
   public boolean onCommand(CommandSender sender, Command cmd, String commandLable, String[] args)
