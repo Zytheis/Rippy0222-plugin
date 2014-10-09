@@ -1,0 +1,120 @@
+package net.MineVill;
+
+import java.io.IOException;
+import java.util.logging.Logger;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.Server;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.plugin.PluginManager;
+import org.bukkit.plugin.java.JavaPlugin;
+
+public final class Main
+  extends JavaPlugin
+  implements Listener
+{
+  public static boolean on = false;
+  
+  public void onEnable()
+  {
+    getServer().getPluginManager().registerEvents(this, this);
+    Bukkit.getServer().getLogger().info("SafeFall Enabled");
+    try
+    {
+      MetricsLite metrics = new MetricsLite(this);
+      metrics.start();
+    }
+    catch (IOException localIOException) {}
+  }
+  
+  public void onDisable()
+  {
+    getServer().getPluginManager().registerEvents(this, this);
+    Bukkit.getServer().getLogger().info("SafeFall Disabled");
+  }
+  
+  public boolean onCommand(CommandSender sender, Command cmd, String commandLable, String[] args)
+  {
+    if (!(sender instanceof Player))
+    {
+      sender.sendMessage(ChatColor.AQUA + "Current Version 1.01");
+      return true;
+    }
+    Player player = (Player)sender;
+    if ((cmd.getName().equalsIgnoreCase("Rippy0222")) && (args.length == 0))
+    {
+      player.sendMessage(ChatColor.GRAY + "[]========" + ChatColor.GRAY + "[" + ChatColor.AQUA + "Rippy0222" + ChatColor.GRAY + "]" + ChatColor.GRAY + "========[]");
+      player.sendMessage(ChatColor.GRAY + "Time in Hell:" + ChatColor.AQUA + " It's been 84 years...");
+      player.sendMessage(ChatColor.GRAY + "Developed by:" + ChatColor.AQUA + " Cryntix The BADASS");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 no" + ChatColor.GRAY + " what the hell?");
+      player.sendMessage(ChatColor.GRAY + "[]====" + ChatColor.GRAY + "=" + ChatColor.GRAY + "=============" + ChatColor.GRAY + "=" + ChatColor.GRAY + "====[]");
+    }
+    else if ((cmd.getName().equals("Rippy0222")) && (args.length == 1) && (args[0].equals("check")))
+    {
+      if (on)
+      {
+        player.sendMessage(ChatColor.GRAY + "[]========" + ChatColor.GRAY + "[" + ChatColor.AQUA + "Rippy0222" + ChatColor.GRAY + "]" + ChatColor.GRAY + "========[]");
+        player.sendMessage(ChatColor.GRAY + "Your ass is:" + ChatColor.RED + " PROBED");
+        player.sendMessage(ChatColor.GRAY + "Meaning you" + ChatColor.RED + " WILL" + ChatColor.GRAY + " get hurt");
+        player.sendMessage(ChatColor.GRAY + "[]====" + ChatColor.GRAY + "=" + ChatColor.GRAY + "=============" + ChatColor.GRAY + "=" + ChatColor.GRAY + "====[]");
+      }
+      else
+      {
+        player.sendMessage(ChatColor.GRAY + "[]========" + ChatColor.GRAY + "[" + ChatColor.AQUA + "Rippy0222" + ChatColor.GRAY + "]" + ChatColor.GRAY + "========[]");
+        player.sendMessage(ChatColor.GRAY + "Your ass is:" + ChatColor.GREEN + " Safe");
+        player.sendMessage(ChatColor.GRAY + "Meaning you" + ChatColor.GREEN + " WONT" + ChatColor.GRAY + " get hurt");
+        player.sendMessage(ChatColor.GRAY + "[]====" + ChatColor.GRAY + "=" + ChatColor.GRAY + "=============" + ChatColor.GRAY + "=" + ChatColor.GRAY + "====[]");
+      }
+    }
+    else if ((cmd.getName().equals("Rippy0222")) && (args.length == 1) && (args[0].equals("no")))
+    {
+      if (on) {
+        player.sendMessage(ChatColor.GRAY + "Your Ass was" + ChatColor.GREEN + " Enabled");
+      } else {
+        player.sendMessage(ChatColor.GRAY + "Your Ass is Already" + ChatColor.GREEN + " Enabled");
+      }
+      on = false;
+    }
+    else if ((cmd.getName().equals("Rippy0222")) && (args.length == 1) && (args[0].equals("yes")))
+    {
+      if (on) {
+        player.sendMessage(ChatColor.GRAY + "Your Titties are Already" + ChatColor.RED + " Disabled");
+      } else {
+        player.sendMessage(ChatColor.GRAY + "Your Titties were" + ChatColor.RED + " Disabled");
+      }
+      on = true;
+    }
+    else if ((cmd.getName().equals("sf")) && (args.length == 1) && (args[0].equals("reload")))
+    {
+      getServer().getPluginManager().enablePlugin(this);
+      player.sendMessage(ChatColor.GRAY + "SafeFall was" + ChatColor.AQUA + " Reloaded");
+    }
+    else if ((cmd.getName().equals("Rippy0222")) && (args.length == 1) && (args[0].equals("help")))
+    {
+      player.sendMessage(ChatColor.GRAY + "[]=======" + ChatColor.GRAY + "[" + ChatColor.AQUA + "Rippy0222" + ChatColor.GRAY + "]" + ChatColor.GRAY + "=======[]");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 no" + ChatColor.GRAY + " turns your Ass on");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 yes" + ChatColor.GRAY + " turns your Ass off");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 check" + ChatColor.GRAY + " to view your Ass status");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 help" + ChatColor.GRAY + " displays sf help");
+      player.sendMessage(ChatColor.GRAY + "[]====" + ChatColor.GRAY + "=" + ChatColor.GRAY + "=============" + ChatColor.GRAY + "=" + ChatColor.GRAY + "====[]");
+    }
+    return true;
+  }
+  
+  @EventHandler
+  public void onEntityDamage(EntityDamageEvent event)
+  {
+    if (!(event.getEntity() instanceof Player)) {
+      return;
+    }
+    if ((event.getCause().equals(EntityDamageEvent.DamageCause.FALL)) && (on) && (((Player)event.getEntity()).hasPermission("Rippy0222.*"))) {
+      event.setCancelled(true);
+    }
+  }
+}
