@@ -101,7 +101,7 @@ public final class Main
       player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 no" + ChatColor.GRAY + " turns your Ass on");
       player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 yes" + ChatColor.GRAY + " turns your Ass off");
       player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 check" + ChatColor.GRAY + " to view your Ass status");
-      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 help" + ChatColor.GRAY + " displays sf help");
+      player.sendMessage(ChatColor.GRAY + "Use" + ChatColor.AQUA + " /Rippy0222 help" + ChatColor.GRAY + " displays ass help");
       player.sendMessage(ChatColor.GRAY + "[]====" + ChatColor.GRAY + "=" + ChatColor.GRAY + "=============" + ChatColor.GRAY + "=" + ChatColor.GRAY + "====[]");
     }
     return true;
